@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import com.masantello.demo.models.Cliente;
