@@ -9,19 +9,18 @@ import org.springframework.context.annotation.Profile;
 import com.masantello.demo.services.DBService;
 
 @Configuration
-@Profile("dev")
+@Profile("Dev")
 public class DevConfig {
 	
 	@Autowired
 	private DBService dbService;
-	//DBService dbService = new DBService();
-	
+
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String ddl;
 	
 	@Bean
 	public boolean populaBD() {
-		if (ddl.equals("create")) {			
+		if (ddl.equalsIgnoreCase("create")) {			
 			this.dbService.populaBD();
 		}
 		return false;
