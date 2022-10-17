@@ -20,20 +20,19 @@ public class TecnicoService {
 	public Tecnico create(Tecnico tecnico) {
 		Tecnico obj = null;
 		if (tecnico != null) {			
-			obj = repository.save(tecnico);
+			obj = this.repository.save(tecnico);
 		}
 		return obj;
 	}
 	
 	//LIST ALL
 	public List<Tecnico> findAll(){
-		List<Tecnico> list = repository.findAll();
-		return list;
+		return this.repository.findAll();
 	}
 	
 	//LIST BY ID
 	public Tecnico findById(Integer id) {
-		Optional<Tecnico> object = repository.findById(id);
+		Optional<Tecnico> object = this.repository.findById(id);
 		
 		return object.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id
 				+ "Tipo de objeto: " + Tecnico.class.getName()));

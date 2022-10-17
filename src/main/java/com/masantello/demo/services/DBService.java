@@ -32,13 +32,14 @@ public class DBService {
 		Cliente c2 = new Cliente(null, "Daniely", "993.963.639-36", "(11) 97894-1234");
 		Tecnico t1 = new Tecnico(null, "Marcos", "467.028.939-06", "(11) 1234-4564");
 		Tecnico t2 = new Tecnico(null, "Marcos Roberto", "178.361.269-00", "(11) 1234-4444");
+		Tecnico t3 = new Tecnico(null, "Maria Cristina", "252.297.190-52", "(11) 1234-8888");
 	
 		OS os = new OS(null, LocalDateTime.now(), Prioridade.ALTA, Status.ABERTO, "teste insert", t1, c1);
 		
 		t1.getList().add(os);
 		c1.getList().add(os);
 		
-		tecnicoRepository.saveAll(Arrays.asList(t1, t2));
+		tecnicoRepository.saveAll(Arrays.asList(t1, t2, t3));
 		clienteRepository.saveAll(Arrays.asList(c1, c2));
 		osRepository.saveAll(Arrays.asList(os));
 	}
