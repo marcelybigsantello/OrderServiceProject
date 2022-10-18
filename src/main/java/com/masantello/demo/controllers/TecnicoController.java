@@ -28,7 +28,7 @@ public class TecnicoController {
 	// CREATE
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<TecnicoDTO> create(@RequestBody Tecnico novo) {
-		Tecnico newObj = service.create(novo);
+		Tecnico newObj = service.create(new TecnicoDTO(novo));
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();

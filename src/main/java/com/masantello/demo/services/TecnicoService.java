@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.masantello.demo.controllers.exceptions.DataIntegrityViolationsException;
+import com.masantello.demo.dtos.TecnicoDTO;
 import com.masantello.demo.models.Tecnico;
 import com.masantello.demo.repositories.TecnicoRepository;
 import com.masantello.demo.services.exceptions.ObjectNotFoundException;
@@ -17,12 +19,23 @@ public class TecnicoService {
 	private TecnicoRepository repository;
 	
 	//CREATE
-	public Tecnico create(Tecnico tecnico) {
+	public Tecnico create(TecnicoDTO tecnico) {
 		Tecnico obj = null;
+		if (findByCPF(tecnico) != null) {
+			throw new DataIntegrityViolationsException("CPF já cadastrado na base de dados!");
+		}
 		if (tecnico != null) {			
-			obj = this.repository.save(tecnico);
+			obj = this.repository.save(new Tecnico(null, tecnico.getNome(), tecnico.getCpf(), tecnico.getTelefone()));
 		}
 		return obj;
+	}
+	
+	public Tecnico findByCPF(TecnicoDTO objDTO) {
+		Tecnico ret = repository.findByCPF(objDTO.getCpf());
+		if (ret != null) {
+			return ret;
+		}
+		return null;
 	}
 	
 	//LIST ALL
