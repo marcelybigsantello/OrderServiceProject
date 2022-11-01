@@ -30,6 +30,7 @@ public class DBService {
 	public void populaBD() {
 		Cliente c1 = new Cliente(null, "Marcely", "487.880.989-23", "(11) 97894-7894");
 		Cliente c2 = new Cliente(null, "Daniely", "993.963.639-36", "(11) 97894-1234");
+		Cliente c3 = new Cliente(null, "Jair Bolsonaro", "209.196.220-11", "(11) 2222-2022");
 		Tecnico t1 = new Tecnico(null, "Marcos", "467.028.939-06", "(11) 1234-4564");
 		Tecnico t2 = new Tecnico(null, "Marcos Roberto", "178.361.269-00", "(11) 1234-4444");
 		Tecnico t3 = new Tecnico(null, "Maria Cristina", "252.297.190-52", "(11) 1234-8888");
@@ -40,7 +41,7 @@ public class DBService {
 		c1.getList().add(os);
 		
 		tecnicoRepository.saveAll(Arrays.asList(t1, t2, t3));
-		clienteRepository.saveAll(Arrays.asList(c1, c2));
+		clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
 		osRepository.saveAll(Arrays.asList(os));
 	}
 }

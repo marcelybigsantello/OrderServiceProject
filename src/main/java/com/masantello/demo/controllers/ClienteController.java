@@ -1,6 +1,8 @@
 package com.masantello.demo.controllers;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -33,6 +35,16 @@ public class ClienteController {
 				.buildAndExpand(novoCliente.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	/*
+	 * Método LIST ALL
+	 */
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<ClienteDTO>> listAll(){
+		List<Cliente> lista = service.findAll();
+		List<ClienteDTO> ret = lista.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(ret);
 	}
 
 	

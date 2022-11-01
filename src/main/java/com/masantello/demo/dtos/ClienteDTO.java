@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.masantello.demo.models.Cliente;
+
 public class ClienteDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
@@ -19,6 +21,14 @@ public class ClienteDTO implements Serializable{
 	
 	public ClienteDTO() {
 		
+	}
+	
+	public ClienteDTO(Cliente cliente) {
+		super();
+		this.id = cliente.getId();
+		this.nome = cliente.getNome();
+		this.cpf = cliente.getCpf();
+		this.telefone = cliente.getTelefone();
 	}
 
 	public ClienteDTO(Integer id, String nome, String cpf, String telefone) {
