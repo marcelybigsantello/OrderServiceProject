@@ -4,10 +4,13 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +29,11 @@ public class TecnicoController {
 	private TecnicoService service;
 	
 	// CREATE
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<TecnicoDTO> create(@RequestBody Tecnico novo) {
-		Tecnico newObj = service.create(new TecnicoDTO(novo));
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
+	@PostMapping
+	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO novo) {
+		Tecnico newObj = service.create(novo);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(newObj.getId()).toUri();
 		
 		return ResponseEntity.created(uri).build();
 	}
@@ -48,6 +52,20 @@ public class TecnicoController {
 		List<Tecnico> list = service.findAll();
 		List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	//UPDATE
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDto){
+		TecnicoDTO newObj = new TecnicoDTO(service.update(id, objDto));
+		return ResponseEntity.ok().body(newObj);	
+	}
+	
+	//DELETE
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.deleteById(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }
