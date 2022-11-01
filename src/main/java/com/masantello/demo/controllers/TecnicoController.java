@@ -28,7 +28,9 @@ public class TecnicoController {
 	@Autowired
 	private TecnicoService service;
 	
-	// CREATE
+	/*
+	 * Método create
+	 */
 	@PostMapping
 	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO novo) {
 		Tecnico newObj = service.create(novo);
@@ -38,7 +40,9 @@ public class TecnicoController {
 		return ResponseEntity.created(uri).build();
 	}
 
-	// LIST BY ID
+	/*
+	 * Método busca por ID
+	 */
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
 		Tecnico obj = service.findById(id);
@@ -46,7 +50,9 @@ public class TecnicoController {
 		return ResponseEntity.ok().body(tecnicoDto);
 	}
 
-	// LIST ALL
+	/*
+	 * Método busca por todos registros
+	 */
 	@GetMapping
 	public ResponseEntity<List<TecnicoDTO>> findAll() {
 		List<Tecnico> list = service.findAll();
@@ -54,14 +60,18 @@ public class TecnicoController {
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
-	//UPDATE
+	/*
+	 * Método atualizar
+	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDto){
 		TecnicoDTO newObj = new TecnicoDTO(service.update(id, objDto));
 		return ResponseEntity.ok().body(newObj);	
 	}
 	
-	//DELETE
+	/*
+	 * Método excluir
+	 */
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.deleteById(id);
