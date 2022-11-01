@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.masantello.demo.controllers.exceptions.DataIntegrityViolationsException;
 import com.masantello.demo.dtos.TecnicoDTO;
+import com.masantello.demo.models.Pessoa;
 import com.masantello.demo.models.Tecnico;
+import com.masantello.demo.repositories.PessoaRepository;
 import com.masantello.demo.repositories.TecnicoRepository;
 import com.masantello.demo.services.exceptions.ObjectNotFoundException;
 
@@ -19,6 +21,9 @@ public class TecnicoService {
 
 	@Autowired
 	private TecnicoRepository repository;
+	
+	@Autowired
+	private PessoaRepository pessoaRepository;
 	
 	//CREATE
 	public Tecnico create(TecnicoDTO tecnico) {
@@ -32,8 +37,8 @@ public class TecnicoService {
 		return obj;
 	}
 	
-	public Tecnico findByCPF(TecnicoDTO objDTO) {
-		Tecnico ret = repository.findByCPF(objDTO.getCpf());
+	public Pessoa findByCPF(TecnicoDTO objDTO) {
+		Pessoa ret = pessoaRepository.findByCPF(objDTO.getCpf());
 		if (ret != null) {
 			return ret;
 		}
@@ -95,5 +100,4 @@ public class TecnicoService {
 		}
 	}
 
-	
 }
