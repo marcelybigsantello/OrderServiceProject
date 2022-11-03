@@ -1,6 +1,7 @@
 package com.masantello.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import com.masantello.demo.models.Cliente;
 import com.masantello.demo.models.Pessoa;
 import com.masantello.demo.repositories.ClienteRepository;
 import com.masantello.demo.repositories.PessoaRepository;
+import com.masantello.demo.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
@@ -46,6 +48,32 @@ public class ClienteService {
 
 	public List<Cliente> findAll() {
 		return this.repository.findAll();
+	}
+
+	public Cliente listById(Integer id) {
+		Optional<Cliente> cliente = repository.findById(id);
+		
+		if (!cliente.isPresent()) {
+			throw new ObjectNotFoundException("Objeto não encontrado! ID: " + id 
+					+ " Tipo de objeto: " + Cliente.class.getSimpleName());
+		}
+		
+		return cliente.get();
+	}
+
+	public Cliente update(Integer id, @Valid ClienteDTO objDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void delete(Integer id) {
+		Cliente cliente = listById(id);
+		
+		if (cliente.getList().size() > 0) {
+			throw new DataIntegrityViolationsException("O cliente possui Ordens de Serviços cadastradas! Não pode remover esse cliente");
+		}
+		
+		repository.delete(cliente);
 	}
 	
 	

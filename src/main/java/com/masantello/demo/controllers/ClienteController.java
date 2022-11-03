@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,34 @@ public class ClienteController {
 		List<ClienteDTO> ret = lista.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(ret);
 	}
-
+	
+	/*
+	 * Método LIST BY ID
+	 */
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	public ResponseEntity<ClienteDTO> listById(@PathVariable Integer id){
+		Cliente cliente = service.listById(id);
+		ClienteDTO clienteDTO = new ClienteDTO(cliente);
+		return ResponseEntity.ok().body(clienteDTO);
+	}
+	
+	/*
+	 * Método UPDATE
+	 */
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @Valid @RequestBody ClienteDTO objDto){
+		ClienteDTO clienteDto = new ClienteDTO(service.update(id, objDto));
+		return null;
+	}
+	
+	
+	/*
+	 * Método DELETE
+	 */
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
 	
 }
