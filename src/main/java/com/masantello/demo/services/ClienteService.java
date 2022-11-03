@@ -62,8 +62,16 @@ public class ClienteService {
 	}
 
 	public Cliente update(Integer id, @Valid ClienteDTO objDto) {
-		// TODO Auto-generated method stub
-		return null;
+		Cliente cliente = listById(id);
+		if (findByCPF(objDto) != null && findByCPF(objDto).getId() != id) {
+			throw new DataIntegrityViolationsException("CPF já cadastrado na base de dados!");
+		}
+		
+		cliente.setNome(objDto.getNome());
+		cliente.setCpf(objDto.getCpf());
+		cliente.setTelefone(objDto.getTelefone());
+		
+		return repository.save(cliente);
 	}
 
 	public void delete(Integer id) {

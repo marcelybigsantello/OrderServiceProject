@@ -63,8 +63,8 @@ public class ClienteController {
 	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
 	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @Valid @RequestBody ClienteDTO objDto){
-		ClienteDTO clienteDto = new ClienteDTO(service.update(id, objDto));
-		return null;
+		ClienteDTO novoCliente = new ClienteDTO(service.update(id, objDto));
+		return ResponseEntity.ok().body(novoCliente);
 	}
 	
 	
