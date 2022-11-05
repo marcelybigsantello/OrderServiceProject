@@ -69,13 +69,13 @@ public class TecnicoService {
 		oldTecnico.setCpf(objDto.getCpf());
 		oldTecnico.setTelefone(objDto.getTelefone());
 		
-		return repository.save(oldTecnico);
+		return this.repository.save(oldTecnico);
 	}
 	
 	
 	//DELETE ALL
 	public void deleteAll() {
-		repository.deleteAll();
+		this.repository.deleteAll();
 	}
 	
 	//DELETE BY ID
@@ -86,16 +86,16 @@ public class TecnicoService {
 			throw new DataIntegrityViolationsException("Técnico possui Ordens de Serviços cadastradas, não pode ser excluído");
 		}
 		
-		repository.delete(tecnico);
+		this.repository.delete(tecnico);
 	}
 
 	
 	//DELETE BY ENTITY
 	public void deleteByEntity(Integer id) {
 		if (id != null) {
-			Optional<Tecnico> ret = repository.findById(id);
+			Optional<Tecnico> ret = this.repository.findById(id);
 			if (ret != null) {
-				repository.delete(ret.get());
+				this.repository.delete(ret.get());
 			}
 		}
 	}

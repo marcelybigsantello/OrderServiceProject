@@ -15,7 +15,7 @@ import com.masantello.demo.models.enums.Prioridade;
 import com.masantello.demo.models.enums.Status;
 
 @Entity
-public class OS {
+public class OrderService {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +38,14 @@ public class OS {
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
-	public OS() {
+	public OrderService() {
 		super();
 		this.setDataAbertura(LocalDateTime.now());
 		this.setPrioridade(Prioridade.BAIXA);
 		this.setStatus(Status.ABERTO);
 	}
 
-	public OS(Integer id, LocalDateTime dataAbertura, Prioridade prioridade,
+	public OrderService(Integer id, LocalDateTime dataAbertura, Prioridade prioridade,
 			Status status, String observacoes, Tecnico tecnico, Cliente cliente) {
 		super();
 		this.id = id;
@@ -134,7 +134,7 @@ public class OS {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OS other = (OS) obj;
+		OrderService other = (OrderService) obj;
 		return Objects.equals(id, other.id);
 	}
 	
