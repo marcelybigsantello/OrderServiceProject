@@ -36,7 +36,8 @@ public class DBService {
 		Tecnico t3 = new Tecnico(null, "Maria Cristina", "252.297.190-52", "(11) 1234-8888");
 	
 		OrderService orderService1 = new OrderService(null, LocalDateTime.now(), Prioridade.ALTA, Status.EM_ANDAMENTO, "teste insert", t1, c1);
-		OrderService orderService2 = new OrderService(null, LocalDateTime.now(), Prioridade.BAIXA, Status.ABERTO, "ordem serviço baixa criada", t2, c3);
+		OrderService orderService2 = new OrderService(null, LocalDateTime.now(), Prioridade.BAIXA, Status.ABERTO, "Notebook apresenta baixa performance", t2, c3);
+		OrderService orderService3 = new OrderService(null, LocalDateTime.now(), Prioridade.MEDIA, Status.ENCERRADO, "Troca de equipamento", t2, c1);
 		
 		t1.getList().add(orderService1);
 		c1.getList().add(orderService1);
@@ -44,8 +45,11 @@ public class DBService {
 		t2.getList().add(orderService2);
 		c3.getList().add(orderService2);
 		
+		t2.getList().add(orderService3);
+		c1.getList().add(orderService3);
+		
 		tecnicoRepository.saveAll(Arrays.asList(t1, t2, t3));
 		clienteRepository.saveAll(Arrays.asList(c1, c2, c3));
-		osRepository.saveAll(Arrays.asList(orderService1, orderService2));
+		osRepository.saveAll(Arrays.asList(orderService1, orderService2, orderService3));
 	}
 }

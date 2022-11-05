@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.masantello.demo.controllers.exceptions.DataIntegrityViolationsException;
 import com.masantello.demo.dtos.OrderServiceDTO;
 import com.masantello.demo.models.Cliente;
 import com.masantello.demo.models.OrderService;
@@ -81,7 +82,7 @@ public class OsService {
 		OrderService orderService = listById(id);
 		
 		if (!orderService.getStatus().getDescricao().equalsIgnoreCase("Encerrado")) {
-			throw new DataIntegrityViolationException("Ordem de serviço não concluída, não pode ser excluída!");
+			throw new DataIntegrityViolationsException("Ordem de serviço não concluída, não pode ser excluída!");
 		}
 		
 		this.repository.deleteById(id);
