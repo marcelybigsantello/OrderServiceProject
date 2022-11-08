@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.masantello.demo.models.OrderService;
+import com.masantello.demo.models.enums.Status;
 
 public class OrderServiceDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

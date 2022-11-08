@@ -51,6 +51,12 @@ public class OrderServiceController {
 		
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<OrderServiceDTO> update(@Valid @RequestBody OrderServiceDTO obj){
+		obj = new OrderServiceDTO(service.update(obj.getId(), obj));
+		return ResponseEntity.ok().body(obj);
+	}
+	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Integer id){
 		service.delete(id);

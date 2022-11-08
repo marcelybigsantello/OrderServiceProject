@@ -1,5 +1,6 @@
 package com.masantello.demo.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,8 @@ import com.masantello.demo.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class OsService {
+	
+	private final String STATUS_ENCERRADO = "Encerrado";
 
 	@Autowired
 	private OsRepository repository;
@@ -46,6 +49,10 @@ public class OsService {
 		orderService.setCliente(cliente);
 		orderService.setTecnico(tecnico);
 		
+		if (orderService.getStatus().getDescricao().equalsIgnoreCase(STATUS_ENCERRADO)) {
+			orderService.setDataFechamento(LocalDateTime.now());
+		}
+		
 		return repository.save(orderService);
 	}
 
@@ -62,32 +69,37 @@ public class OsService {
 		return this.repository.findAll();
 	}
 
-	public OrderService update(Integer id, @Valid OrderServiceDTO objDto) {
-		OrderService os = listById(id);
+	public OrderService update(Integer id, @Valid OrderServiceDTO obj) {
+		listById(id);
+		OrderService orderService = new OrderService();
+		orderService.setId(obj.getId());
+		orderService.setDataAbertura(obj.getDataAbertura());
+		orderService.setDataFechamento(obj.getDataFechamento());
+		orderService.setObservacoes(obj.getObservacoes());
+		orderService.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
+		orderService.setStatus(Status.toEnum(obj.getStatus()));
 		
-		if (os != null) {
-			os.setDataAbertura(objDto.getDataAbertura());
-			os.setDataFechamento(objDto.getDataFechamento());
-			os.setObservacoes(objDto.getObservacoes());
-//			os.setPrioridade(objDto.getPrioridade().);
-//			os.setStatus(objDto.getStatus().getCodigo());
-//			os.setTecnico(objDto.getTecnico().getClass());
-//			os.setCliente(objDto.getCliente().getId());
+		Cliente cliente = clienteService.listById(obj.getCliente());
+		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
+		
+		orderService.setCliente(cliente);
+		orderService.setTecnico(tecnico);
+		
+		if (orderService.getStatus().getDescricao().equalsIgnoreCase(STATUS_ENCERRADO)) {
+			orderService.setDataFechamento(LocalDateTime.now());
 		}
 		
-		return os;
+		return repository.save(orderService);
 	}
 
 	public void delete(Integer id) {
 		OrderService orderService = listById(id);
 		
-		if (!orderService.getStatus().getDescricao().equalsIgnoreCase("Encerrado")) {
+		if (!orderService.getStatus().getDescricao().equalsIgnoreCase(STATUS_ENCERRADO)) {
 			throw new DataIntegrityViolationsException("Ordem de serviço não concluída, não pode ser excluída!");
 		}
 		
 		this.repository.deleteById(id);
 	}
-
-	
 
 }
