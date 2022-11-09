@@ -55,7 +55,7 @@ public class TecnicoService {
 		Optional<Tecnico> object = this.repository.findById(id);
 		
 		return object.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id
-				+ " Tipo de objeto: " + Tecnico.class.getName()));
+				+ " Tipo de objeto: " + Tecnico.class.getSimpleName()));
 	}
 	
 	//UPDATE

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.masantello.demo.dtos.OrderServiceDTO;
 import com.masantello.demo.models.OrderService;
 import com.masantello.demo.services.OsService;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/os")
 public class OrderServiceController {
