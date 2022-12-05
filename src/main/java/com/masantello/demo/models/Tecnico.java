@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Tecnico extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private String grauInstrucao; 
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "tecnico")
 	private List<OrderService> list = new ArrayList<>();
@@ -21,8 +23,9 @@ public class Tecnico extends Pessoa implements Serializable {
 		super();
 	}
 	
-	public Tecnico(Integer id, String nome, String cpf, String telefone) {
+	public Tecnico(Integer id, String nome, String cpf, String telefone, String grauInstrucao) {
 		super(id, nome, cpf, telefone);
+		this.setGrauInstrucao(grauInstrucao);
 	}
 
 	public List<OrderService> getList() {
@@ -31,6 +34,14 @@ public class Tecnico extends Pessoa implements Serializable {
 
 	public void setList(List<OrderService> list) {
 		this.list = list;
+	}
+
+	public String getGrauInstrucao() {
+		return grauInstrucao;
+	}
+
+	public void setGrauInstrucao(String grauInstrucao) {
+		this.grauInstrucao = grauInstrucao;
 	}
 	
 }

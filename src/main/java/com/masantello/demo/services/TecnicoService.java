@@ -32,7 +32,8 @@ public class TecnicoService {
 			throw new DataIntegrityViolationsException("CPF já cadastrado na base de dados!");
 		}
 		if (tecnico != null) {			
-			obj = this.repository.save(new Tecnico(null, tecnico.getNome(), tecnico.getCpf(), tecnico.getTelefone()));
+			obj = this.repository.save(new Tecnico(null, tecnico.getNome(), tecnico.getCpf(), 
+					tecnico.getTelefone(), tecnico.getGrauInstrucao()));
 		}
 		return obj;
 	}
@@ -68,6 +69,7 @@ public class TecnicoService {
 		oldTecnico.setNome(objDto.getNome());
 		oldTecnico.setCpf(objDto.getCpf());
 		oldTecnico.setTelefone(objDto.getTelefone());
+		oldTecnico.setGrauInstrucao(objDto.getGrauInstrucao());
 		
 		return this.repository.save(oldTecnico);
 	}

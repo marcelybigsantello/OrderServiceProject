@@ -19,6 +19,9 @@ public class TecnicoDTO implements Serializable {
 	
 	@NotEmpty(message = "O campo TELEFONE é obrigatório")
 	private String telefone;
+
+	@NotEmpty(message = "O campo GRAU DE INSTRUÇÃO é obrigatório")
+	private String grauInstrucao;
 	
 	public TecnicoDTO() {
 		super();
@@ -30,6 +33,7 @@ public class TecnicoDTO implements Serializable {
 		this.nome = tecnico.getNome();
 		this.cpf = tecnico.getCpf();
 		this.telefone = tecnico.getTelefone();
+		this.grauInstrucao = tecnico.getGrauInstrucao();
 	}
 
 	public Integer getId() {
@@ -62,6 +66,14 @@ public class TecnicoDTO implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	
+	public String getGrauInstrucao() {
+		return grauInstrucao;
+	}
+
+	public void setGrauInstrucao(String grauInstrucao) {
+		this.grauInstrucao = grauInstrucao;
 	}
 	
 }
