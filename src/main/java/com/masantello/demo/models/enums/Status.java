@@ -2,7 +2,7 @@ package com.masantello.demo.models.enums;
 
 public enum Status {
 
-	ABERTO(0, "Aberto"), EM_ANDAMENTO(1, "Em andamento"), ENCERRADO(2, "Encerrado");
+	ABERTO(0, "Aberto"), ANDAMENTO(1, "Em andamento"), ENCERRADO(2, "Encerrado");
 
 	private Integer codigo;
 	private String descricao;
@@ -64,5 +64,19 @@ public enum Status {
 		}
 
 		throw new IllegalArgumentException("Status inválido!" + codigo);
+	}
+	
+	public static String toDescription(Integer codigo) {
+		if (codigo == null) {
+			return null;
+		}
+		
+		for (Status status : Status.values()) {
+			if (status.getCodigo() == codigo) {
+				return status.getDescricao();
+			}
+		}
+		
+		throw new IllegalArgumentException("Status inválido! " + codigo);
 	}
 }

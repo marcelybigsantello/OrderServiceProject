@@ -40,8 +40,8 @@ public class OsService {
 		orderService.setDataAbertura(obj.getDataAbertura());
 		orderService.setDataFechamento(obj.getDataFechamento());
 		orderService.setObservacoes(obj.getObservacoes());
-		orderService.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
-		orderService.setStatus(Status.toEnum(obj.getStatus()));
+		orderService.setPrioridade(obj.getPrioridade());
+		orderService.setStatus(obj.getStatus());
 		
 		Cliente cliente = clienteService.listById(obj.getCliente());
 		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
@@ -76,8 +76,8 @@ public class OsService {
 		orderService.setDataAbertura(obj.getDataAbertura());
 		orderService.setDataFechamento(obj.getDataFechamento());
 		orderService.setObservacoes(obj.getObservacoes());
-		orderService.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
-		orderService.setStatus(Status.toEnum(obj.getStatus()));
+		orderService.setPrioridade(obj.getPrioridade());
+		orderService.setStatus(obj.getStatus());
 		
 		Cliente cliente = clienteService.listById(obj.getCliente());
 		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());

@@ -35,7 +35,7 @@ public class DBService {
 		Tecnico t2 = new Tecnico(null, "Marcos Roberto", "178.361.269-00", "(11) 1234-4444", "Pós graduação");
 		Tecnico t3 = new Tecnico(null, "Maria Cristina", "252.297.190-52", "(11) 1234-8888", "Mestrado");
 	
-		OrderService orderService1 = new OrderService(null, LocalDateTime.now(), Prioridade.ALTA, Status.EM_ANDAMENTO, "teste insert", t1, c1);
+		OrderService orderService1 = new OrderService(null, LocalDateTime.now(), Prioridade.ALTA, Status.ANDAMENTO, "teste insert", t1, c1);
 		OrderService orderService2 = new OrderService(null, LocalDateTime.now(), Prioridade.BAIXA, Status.ABERTO, "Notebook apresenta baixa performance", t2, c3);
 		OrderService orderService3 = new OrderService(null, LocalDateTime.now(), Prioridade.MEDIA, Status.ENCERRADO, "Troca de equipamento", t2, c1);
 		

@@ -20,7 +20,6 @@ public class TecnicoDTO implements Serializable {
 	@NotEmpty(message = "O campo TELEFONE é obrigatório")
 	private String telefone;
 
-	@NotEmpty(message = "O campo GRAU DE INSTRUÇÃO é obrigatório")
 	private String grauInstrucao;
 	
 	public TecnicoDTO() {

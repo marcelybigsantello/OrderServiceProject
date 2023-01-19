@@ -22,7 +22,7 @@ import com.masantello.demo.services.OsService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value = "/os")
+@RequestMapping(value = "/ordem-servico")
 public class OrderServiceController {
 
 	@Autowired
