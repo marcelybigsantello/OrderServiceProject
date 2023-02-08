@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.masantello.demo.models.Tecnico;
 
 public class TecnicoDTO implements Serializable {
@@ -14,6 +16,7 @@ public class TecnicoDTO implements Serializable {
 	@NotEmpty(message = "O campo NOME é obrigatório")
 	private String nome;
 	
+	@CPF
 	@NotEmpty(message = "O campo CPF é obrigatório")
 	private String cpf;
 	

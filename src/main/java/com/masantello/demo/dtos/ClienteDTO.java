@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 import com.masantello.demo.models.Cliente;
 
 public class ClienteDTO implements Serializable {
@@ -13,6 +15,7 @@ public class ClienteDTO implements Serializable {
 	@NotEmpty(message = "O campo NOME é obrigatório")
 	private String nome;
 	
+	@CPF
 	@NotEmpty(message = "O campo CPF é obrigatório")
 	private String cpf;
 	

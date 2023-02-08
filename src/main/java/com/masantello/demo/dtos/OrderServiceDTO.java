@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.masantello.demo.models.OrderService;
 import com.masantello.demo.models.enums.Prioridade;
 import com.masantello.demo.models.enums.Status;
@@ -14,8 +15,12 @@ public class OrderServiceDTO implements Serializable {
 	
 	private Integer id;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataAbertura;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataFechamento;
+	
 	private Integer prioridade;
 	private Integer status;
 	@NotEmpty(message = "O campo OBSERVAÇÕES é obrigatório")
