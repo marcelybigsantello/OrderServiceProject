@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Tecnico extends Pessoa implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	private String grauInstrucao; 
 	
 	@JsonIgnore

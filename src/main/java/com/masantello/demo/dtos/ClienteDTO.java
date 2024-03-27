@@ -1,11 +1,13 @@
 package com.masantello.demo.dtos;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.masantello.demo.models.Cliente;
 
 public class ClienteDTO implements Serializable {
@@ -22,6 +24,10 @@ public class ClienteDTO implements Serializable {
 	@NotEmpty(message = "O campo TELEFONE é obrigatório")
 	private String telefone;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate dataNascimento;
+	private String profissao;
+	
 	public ClienteDTO() {
 		
 	}
@@ -32,14 +38,19 @@ public class ClienteDTO implements Serializable {
 		this.nome = cliente.getNome();
 		this.cpf = cliente.getCpf();
 		this.telefone = cliente.getTelefone();
+		this.dataNascimento = cliente.getDataNascimento();
+		this.profissao = cliente.getProfissao();
 	}
 
-	public ClienteDTO(Integer id, String nome, String cpf, String telefone) {
+	public ClienteDTO(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento,
+			String endereco, String profissao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.dataNascimento = dataNascimento;
+		this.profissao = profissao;
 	}
 
 	public Integer getId() {
@@ -72,6 +83,22 @@ public class ClienteDTO implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
+	public String getProfissao() {
+		return profissao;
+	}
+
+	public void setProfissao(String profissao) {
+		this.profissao = profissao;
 	}
 	
 }

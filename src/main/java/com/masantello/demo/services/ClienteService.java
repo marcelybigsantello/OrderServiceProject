@@ -32,7 +32,8 @@ public class ClienteService {
 		}
 		
 		if (novo != null) {
-			obj = this.repository.save(new Cliente(null, novo.getNome(), novo.getCpf(), novo.getTelefone()));
+			obj = this.repository.save(new Cliente(null, novo.getNome(), novo.getCpf(), novo.getTelefone(), 
+					 novo.getDataNascimento(), novo.getProfissao()));
 		}
 		
 		return obj;
@@ -70,6 +71,8 @@ public class ClienteService {
 		cliente.setNome(objDto.getNome());
 		cliente.setCpf(objDto.getCpf());
 		cliente.setTelefone(objDto.getTelefone());
+		cliente.setDataNascimento(objDto.getDataNascimento());
+		cliente.setProfissao(objDto.getProfissao());
 		
 		return repository.save(cliente);
 	}
@@ -82,7 +85,5 @@ public class ClienteService {
 		}
 		
 		repository.delete(cliente);
-	}
-	
-	
+	}	
 }
