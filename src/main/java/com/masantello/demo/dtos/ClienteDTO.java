@@ -2,12 +2,12 @@ package com.masantello.demo.dtos;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.masantello.demo.models.Cliente;
 
 public class ClienteDTO implements Serializable {
@@ -24,7 +24,6 @@ public class ClienteDTO implements Serializable {
 	@NotEmpty(message = "O campo TELEFONE é obrigatório")
 	private String telefone;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	private String profissao;
 	
@@ -42,14 +41,14 @@ public class ClienteDTO implements Serializable {
 		this.profissao = cliente.getProfissao();
 	}
 
-	public ClienteDTO(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento,
+	public ClienteDTO(Integer id, String nome, String cpf, String telefone, String dataNascimento,
 			String endereco, String profissao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
-		this.dataNascimento = dataNascimento;
+		this.dataNascimento = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
 		this.profissao = profissao;
 	}
 

@@ -7,7 +7,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.masantello.demo.controllers.exceptions.DataIntegrityViolationsException;
@@ -15,8 +14,6 @@ import com.masantello.demo.dtos.OrderServiceDTO;
 import com.masantello.demo.models.Cliente;
 import com.masantello.demo.models.OrderService;
 import com.masantello.demo.models.Tecnico;
-import com.masantello.demo.models.enums.Prioridade;
-import com.masantello.demo.models.enums.Status;
 import com.masantello.demo.repositories.OsRepository;
 import com.masantello.demo.services.exceptions.ObjectNotFoundException;
 
