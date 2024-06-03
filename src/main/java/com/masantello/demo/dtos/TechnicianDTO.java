@@ -6,9 +6,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.masantello.demo.models.Tecnico;
+import com.masantello.demo.models.Technician;
 
-public class TecnicoDTO implements Serializable {
+public class TechnicianDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -26,11 +26,11 @@ public class TecnicoDTO implements Serializable {
 	@NotEmpty(message = "O campo Grau de Instrução é obrigatório")
 	private String grauInstrucao;
 	
-	public TecnicoDTO() {
+	public TechnicianDTO() {
 		super();
 	}
 
-	public TecnicoDTO(Tecnico tecnico) {
+	public TechnicianDTO(Technician tecnico) {
 		super();
 		this.id = tecnico.getId();
 		this.nome = tecnico.getNome();

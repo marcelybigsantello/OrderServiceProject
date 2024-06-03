@@ -1,17 +1,17 @@
 package com.masantello.demo.models.enums;
 
-public enum Prioridade {
+public enum Priority {
 
 	BAIXA(0, "Baixa"), MEDIA(1, "Media"), ALTA(2, "Alta");
 
 	private Integer codigo;
 	private String descricao;
 
-	private Prioridade() {
+	private Priority() {
 
 	}
 
-	private Prioridade(int codigo, String desc) {
+	private Priority(int codigo, String desc) {
 		this.codigo = codigo;
 		this.descricao = desc;
 	}
@@ -32,8 +32,8 @@ public enum Prioridade {
 		this.descricao = descricao;
 	}
 
-	public static Prioridade findByCode(int codigo) {
-		for (Prioridade prioridade : Prioridade.values()) {
+	public static Priority findByCode(int codigo) {
+		for (Priority prioridade : Priority.values()) {
 			if (prioridade.getCodigo() == codigo) {
 				return prioridade;
 			}
@@ -41,8 +41,8 @@ public enum Prioridade {
 		return null;
 	}
 
-	public static Prioridade findByDescription(String descricao) {
-		for (Prioridade prioridade : Prioridade.values()) {
+	public static Priority findByDescription(String descricao) {
+		for (Priority prioridade : Priority.values()) {
 			if (prioridade.getDescricao().equalsIgnoreCase(descricao)) {
 				return prioridade;
 			}
@@ -50,12 +50,12 @@ public enum Prioridade {
 		return null;
 	}
 	
-	public static Prioridade toEnum(Integer codigo) {
+	public static Priority toEnum(Integer codigo) {
 		if (codigo == null) {
 			return null;
 		}
 		
-		for (Prioridade p: Prioridade.values()) {
+		for (Priority p: Priority.values()) {
 			if (p.getCodigo() == codigo) {
 				return p;
 			}

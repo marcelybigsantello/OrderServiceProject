@@ -6,22 +6,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.masantello.demo.services.DBService;
+import com.masantello.demo.services.DatabaseService;
 
 @Configuration
 @Profile("Dev")
 public class DevConfig {
 	
 	@Autowired
-	private DBService dbService;
+	private DatabaseService dbService;
 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String ddl;
 	
 	@Bean
-	public boolean populaBD() {
+	public boolean populateDB() {
 		if (ddl.equalsIgnoreCase("create")) {			
-			this.dbService.populaBD();
+			this.dbService.populateDB();
 		}
 		return false;
 	}

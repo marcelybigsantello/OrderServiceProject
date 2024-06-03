@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.masantello.demo.models.enums.Prioridade;
+import com.masantello.demo.models.enums.Priority;
 import com.masantello.demo.models.enums.Status;
 
 @Entity
@@ -31,30 +31,30 @@ public class OrderService {
 	private String observacoes;
 	
 	@ManyToOne
-	@JoinColumn(name = "tecnico_id")
-	private Tecnico tecnico;
+	@JoinColumn(name = "technician_id")
+	private Technician technician;
 	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id")
-	private Cliente cliente;
+	@JoinColumn(name = "customer_id")
+	private Customer customer;
 	
 	public OrderService() {
 		super();
 		this.setDataAbertura(LocalDateTime.now());
-		this.setPrioridade(Prioridade.BAIXA);
+		this.setPrioridade(Priority.BAIXA);
 		this.setStatus(Status.ABERTO);
 	}
 
-	public OrderService(Integer id, LocalDateTime dataAbertura, Prioridade prioridade,
-			Status status, String observacoes, Tecnico tecnico, Cliente cliente) {
+	public OrderService(Integer id, LocalDateTime dataAbertura, Priority prioridade,
+			Status status, String observacoes, Technician technician, Customer customer) {
 		super();
 		this.id = id;
 		this.setDataAbertura(LocalDateTime.now());;
 		this.prioridade = (prioridade == null) ? 0 : prioridade.getCodigo() ;
 		this.status = (status == null) ? 0 : status.getCodigo();
 		this.observacoes = observacoes;
-		this.tecnico = tecnico;
-		this.cliente = cliente;
+		this.technician = technician;
+		this.customer = customer;
 	}
 
 	public Integer getId() {
@@ -81,11 +81,11 @@ public class OrderService {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Prioridade getPrioridade() {
-		return Prioridade.toEnum(this.prioridade);
+	public Priority getPrioridade() {
+		return Priority.toEnum(this.prioridade);
 	}
 
-	public void setPrioridade(Prioridade prioridade) {
+	public void setPrioridade(Priority prioridade) {
 		this.prioridade = prioridade.getCodigo();
 	}
 
@@ -105,20 +105,20 @@ public class OrderService {
 		this.observacoes = observacoes;
 	}
 
-	public Tecnico getTecnico() {
-		return tecnico;
+	public Technician getTechnician() {
+		return technician;
 	}
 
-	public void setTecnico(Tecnico tecnico) {
-		this.tecnico = tecnico;
+	public void setTechnician(Technician technician) {
+		this.technician = technician;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@Override
@@ -137,6 +137,5 @@ public class OrderService {
 		OrderService other = (OrderService) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }

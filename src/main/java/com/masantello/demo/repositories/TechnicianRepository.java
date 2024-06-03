@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.masantello.demo.models.Tecnico;
+import com.masantello.demo.models.Technician;
 
 @Repository
-public interface TecnicoRepository extends JpaRepository<Tecnico, Integer>{
+public interface TechnicianRepository extends JpaRepository<Technician, Integer>{
 
-	@Query("SELECT obj FROM Tecnico obj WHERE obj.cpf =:cpf")
-	public Tecnico findByCPF(@Param("cpf") String cpf);
+	@Query("SELECT obj FROM Technician obj WHERE obj.cpf =:cpf")
+	public Technician findByCPF(@Param("cpf") String cpf);
 
 }

@@ -16,24 +16,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.masantello.demo.dtos.ClienteDTO;
-import com.masantello.demo.models.Cliente;
-import com.masantello.demo.services.ClienteService;
+import com.masantello.demo.dtos.CostumerDTO;
+import com.masantello.demo.models.Customer;
+import com.masantello.demo.services.CustomerService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/clientes")
-public class ClienteController {
+public class CostumerController {
 	
 	@Autowired
-	private ClienteService service;
+	private CustomerService service;
 
 	/*
 	 * Método CREATE
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<ClienteDTO> create(@Valid @RequestBody ClienteDTO novo){
-		Cliente novoCliente = service.create(novo);
+	public ResponseEntity<CostumerDTO> create(@Valid @RequestBody CostumerDTO novo){
+		Customer novoCliente = service.create(novo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(novoCliente.getId()).toUri();
 		
@@ -44,9 +44,9 @@ public class ClienteController {
 	 * Método LIST ALL
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ClienteDTO>> listAll(){
-		List<Cliente> lista = service.findAll();
-		List<ClienteDTO> ret = lista.stream().map(obj -> new ClienteDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<CostumerDTO>> listAll(){
+		List<Customer> lista = service.findAll();
+		List<CostumerDTO> ret = lista.stream().map(obj -> new CostumerDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(ret);
 	}
 	
@@ -54,9 +54,9 @@ public class ClienteController {
 	 * Método LIST BY ID
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	public ResponseEntity<ClienteDTO> listById(@PathVariable Integer id){
-		Cliente cliente = service.listById(id);
-		ClienteDTO clienteDTO = new ClienteDTO(cliente);
+	public ResponseEntity<CostumerDTO> listById(@PathVariable Integer id){
+		Customer cliente = service.listById(id);
+		CostumerDTO clienteDTO = new CostumerDTO(cliente);
 		return ResponseEntity.ok().body(clienteDTO);
 	}
 	
@@ -64,8 +64,8 @@ public class ClienteController {
 	 * Método UPDATE
 	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public ResponseEntity<ClienteDTO> update(@PathVariable Integer id, @Valid @RequestBody ClienteDTO objDto){
-		ClienteDTO novoCliente = new ClienteDTO(service.update(id, objDto));
+	public ResponseEntity<CostumerDTO> update(@PathVariable Integer id, @Valid @RequestBody CostumerDTO objDto){
+		CostumerDTO novoCliente = new CostumerDTO(service.update(id, objDto));
 		return ResponseEntity.ok().body(novoCliente);
 	}
 	

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.masantello.demo.models.OrderService;
-import com.masantello.demo.models.enums.Prioridade;
+import com.masantello.demo.models.enums.Priority;
 import com.masantello.demo.models.enums.Status;
 
 public class OrderServiceDTO implements Serializable {
@@ -52,8 +52,8 @@ public class OrderServiceDTO implements Serializable {
 		this.prioridade = orderService.getPrioridade().getCodigo();
 		this.status = orderService.getStatus().getCodigo();
 		this.observacoes = orderService.getObservacoes();
-		this.tecnico = orderService.getTecnico().getId();
-		this.cliente = orderService.getCliente().getId();
+		this.tecnico = orderService.getTechnician().getId();
+		this.cliente = orderService.getCustomer().getId();
 	}
 
 	public Integer getId() {
@@ -80,8 +80,8 @@ public class OrderServiceDTO implements Serializable {
 		this.dataFechamento = dataFechamento;
 	}
 
-	public Prioridade getPrioridade() {
-		return Prioridade.toEnum(this.prioridade);
+	public Priority getPrioridade() {
+		return Priority.toEnum(this.prioridade);
 	}
 
 	public void setPrioridade(Integer prioridade) {

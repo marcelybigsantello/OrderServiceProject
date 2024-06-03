@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public abstract class Pessoa {
+public abstract class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public abstract class Pessoa {
 	private String cpf;
 	private String telefone;
 	
-	public Pessoa() {
+	public Person() {
 		super();
 	}
 
-	public Pessoa(Integer id, String nome, String cpf, String telefone) {
+	public Person(Integer id, String nome, String cpf, String telefone) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -75,7 +75,7 @@ public abstract class Pessoa {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Pessoa other = (Pessoa) obj;
+		Person other = (Person) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(id, other.id);
 	}
 	

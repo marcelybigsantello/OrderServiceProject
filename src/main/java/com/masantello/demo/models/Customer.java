@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Cliente extends Pessoa implements Serializable {
+public class Customer extends Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "customer")
 	private List<OrderService> list = new ArrayList<>();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -24,12 +24,12 @@ public class Cliente extends Pessoa implements Serializable {
 	private String profissao;
 	
 
-	public Cliente() {
+	public Customer() {
 		super();
 	}
 
 	
-	public Cliente(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento, String profissao) {
+	public Customer(Integer id, String nome, String cpf, String telefone, LocalDate dataNascimento, String profissao) {
 		super(id, nome, cpf, telefone);
 		this.dataNascimento = dataNascimento;
 		this.profissao = profissao;

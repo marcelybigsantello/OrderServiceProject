@@ -10,21 +10,21 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Tecnico extends Pessoa implements Serializable {
+public class Technician extends Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@JsonIgnore
 	private String grauInstrucao; 
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "tecnico")
+	@OneToMany(mappedBy = "technician")
 	private List<OrderService> list = new ArrayList<>();
 	
-	public Tecnico() {
+	public Technician() {
 		super();
 	}
 	
-	public Tecnico(Integer id, String nome, String cpf, String telefone, String grauInstrucao) {
+	public Technician(Integer id, String nome, String cpf, String telefone, String grauInstrucao) {
 		super(id, nome, cpf, telefone);
 		this.setGrauInstrucao(grauInstrucao);
 	}

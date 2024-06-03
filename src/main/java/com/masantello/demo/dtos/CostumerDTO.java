@@ -8,9 +8,9 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-import com.masantello.demo.models.Cliente;
+import com.masantello.demo.models.Customer;
 
-public class ClienteDTO implements Serializable {
+public class CostumerDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -27,11 +27,11 @@ public class ClienteDTO implements Serializable {
 	private LocalDate dataNascimento;
 	private String profissao;
 	
-	public ClienteDTO() {
+	public CostumerDTO() {
 		
 	}
 	
-	public ClienteDTO(Cliente cliente) {
+	public CostumerDTO(Customer cliente) {
 		super();
 		this.id = cliente.getId();
 		this.nome = cliente.getNome();
@@ -41,7 +41,7 @@ public class ClienteDTO implements Serializable {
 		this.profissao = cliente.getProfissao();
 	}
 
-	public ClienteDTO(Integer id, String nome, String cpf, String telefone, String dataNascimento,
+	public CostumerDTO(Integer id, String nome, String cpf, String telefone, String dataNascimento,
 			String endereco, String profissao) {
 		super();
 		this.id = id;

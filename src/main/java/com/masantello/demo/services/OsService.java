@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.masantello.demo.controllers.exceptions.DataIntegrityViolationsException;
 import com.masantello.demo.dtos.OrderServiceDTO;
-import com.masantello.demo.models.Cliente;
+import com.masantello.demo.models.Customer;
 import com.masantello.demo.models.OrderService;
-import com.masantello.demo.models.Tecnico;
-import com.masantello.demo.repositories.OsRepository;
+import com.masantello.demo.models.Technician;
+import com.masantello.demo.repositories.OrderServiceRepository;
 import com.masantello.demo.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -23,13 +23,13 @@ public class OsService {
 	private final String STATUS_ENCERRADO = "Encerrado";
 
 	@Autowired
-	private OsRepository repository;
+	private OrderServiceRepository repository;
 	
 	@Autowired
-	private ClienteService clienteService;
+	private CustomerService clienteService;
 	
 	@Autowired
-	private TecnicoService tecnicoService;
+	private TechnicianService tecnicoService;
 	
 	public OrderService create(@Valid OrderServiceDTO obj) {
 		OrderService orderService = new OrderService();
@@ -40,11 +40,11 @@ public class OsService {
 		orderService.setPrioridade(obj.getPrioridade());
 		orderService.setStatus(obj.getStatus());
 		
-		Cliente cliente = clienteService.listById(obj.getCliente());
-		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
+		Customer cliente = clienteService.listById(obj.getCliente());
+		Technician tecnico = tecnicoService.findById(obj.getTecnico());
 		
-		orderService.setCliente(cliente);
-		orderService.setTecnico(tecnico);
+		orderService.setCustomer(cliente);
+		orderService.setTechnician(tecnico);
 		
 		if (orderService.getStatus().getDescricao().equalsIgnoreCase(STATUS_ENCERRADO)) {
 			orderService.setDataFechamento(LocalDateTime.now());
@@ -76,11 +76,11 @@ public class OsService {
 		orderService.setPrioridade(obj.getPrioridade());
 		orderService.setStatus(obj.getStatus());
 		
-		Cliente cliente = clienteService.listById(obj.getCliente());
-		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
+		Customer cliente = clienteService.listById(obj.getCliente());
+		Technician tecnico = tecnicoService.findById(obj.getTecnico());
 		
-		orderService.setCliente(cliente);
-		orderService.setTecnico(tecnico);
+		orderService.setCustomer(cliente);
+		orderService.setTechnician(tecnico);
 		
 		if (orderService.getStatus().getDescricao().equalsIgnoreCase(STATUS_ENCERRADO)) {
 			orderService.setDataFechamento(LocalDateTime.now());

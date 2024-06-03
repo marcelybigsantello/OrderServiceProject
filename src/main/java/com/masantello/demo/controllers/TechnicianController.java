@@ -18,24 +18,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.masantello.demo.dtos.TecnicoDTO;
-import com.masantello.demo.models.Tecnico;
-import com.masantello.demo.services.TecnicoService;
+import com.masantello.demo.dtos.TechnicianDTO;
+import com.masantello.demo.models.Technician;
+import com.masantello.demo.services.TechnicianService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping(value = "/tecnicos")
-public class TecnicoController {
+public class TechnicianController {
 
 	@Autowired
-	private TecnicoService service;
+	private TechnicianService service;
 	
 	/*
 	 * Método create
 	 */
 	@PostMapping
-	public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO novo) {
-		Tecnico newObj = service.create(novo);
+	public ResponseEntity<TechnicianDTO> create(@Valid @RequestBody TechnicianDTO novo) {
+		Technician newObj = service.create(novo);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(newObj.getId()).toUri();
 		
@@ -46,9 +46,9 @@ public class TecnicoController {
 	 * Método busca por ID
 	 */
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<TecnicoDTO> findById(@PathVariable Integer id) {
-		Tecnico obj = service.findById(id);
-		TecnicoDTO tecnicoDto = new TecnicoDTO(obj);
+	public ResponseEntity<TechnicianDTO> findById(@PathVariable Integer id) {
+		Technician obj = service.findById(id);
+		TechnicianDTO tecnicoDto = new TechnicianDTO(obj);
 		return ResponseEntity.ok().body(tecnicoDto);
 	}
 
@@ -56,9 +56,9 @@ public class TecnicoController {
 	 * Método busca por todos registros
 	 */
 	@GetMapping
-	public ResponseEntity<List<TecnicoDTO>> findAll() {
-		List<Tecnico> list = service.findAll();
-		List<TecnicoDTO> listDTO = list.stream().map(obj -> new TecnicoDTO(obj)).collect(Collectors.toList());
+	public ResponseEntity<List<TechnicianDTO>> findAll() {
+		List<Technician> list = service.findAll();
+		List<TechnicianDTO> listDTO = list.stream().map(obj -> new TechnicianDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
@@ -66,8 +66,8 @@ public class TecnicoController {
 	 * Método atualizar
 	 */
 	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
-	public ResponseEntity<TecnicoDTO> update(@PathVariable Integer id, @Valid @RequestBody TecnicoDTO objDto){
-		TecnicoDTO newObj = new TecnicoDTO(service.update(id, objDto));
+	public ResponseEntity<TechnicianDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicianDTO objDto){
+		TechnicianDTO newObj = new TechnicianDTO(service.update(id, objDto));
 		return ResponseEntity.ok().body(newObj);	
 	}
 	
